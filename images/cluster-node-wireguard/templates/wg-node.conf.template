@@ -1,0 +1,10 @@
+[Interface]
+Address = ${NODE_TUNNEL_ADDRESS}
+PostUp = wg set %i private-key /etc/wireguard/%i.key
+ListenPort = ${NODE_LISTEN_PORT}
+
+[Peer]
+PublicKey = ${EXTERNAL_PUBLIC_KEY}
+AllowedIPs = ${EXTERNAL_ALLOWED_IPS}
+Endpoint = ${EXTERNAL_LISTEN_ADDRESS}:${EXTERNAL_LISTEN_PORT}
+
