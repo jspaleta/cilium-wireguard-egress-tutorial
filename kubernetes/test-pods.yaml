@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wireguard-enabled-test-pod
+  labels:
+    app.kubernetes.io/name: test-pods
+    env: test
+spec:
+  containers:
+  - name: test
+    image: test-pod:0.1
+    imagePullPolicy: IfNotPresent
+    command:
+      - "sleep"
+      - "604800"  
+  restartPolicy: Always
+  nodeSelector:
+    wireguard: enabled
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: wireguard-disabled-test-pod
+  labels:
+    app.kubernetes.io/name: test-pods
+    env: test
+spec:
+  containers:
+  - name: test
+    image: test-pod:0.1
+    imagePullPolicy: IfNotPresent
+    command:
+      - "sleep"
+      - "604800"  
+  restartPolicy: Always
+  nodeSelector:
+    wireguard: disabled
