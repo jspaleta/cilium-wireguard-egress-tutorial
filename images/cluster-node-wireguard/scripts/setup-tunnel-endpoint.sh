@@ -5,7 +5,7 @@ set -e
 cleanup() {
     echo "Container stopped, performing cleanup..."
     export DONE=1
-    #wg-quick down $TUNNEL_DEVICE
+    wg-quick down $TUNNEL_DEVICE
 }
 
 
@@ -130,8 +130,8 @@ fi
 trap 'cleanup' SIGTERM
 
 
-#wg-quick up $TUNNEL_DEVICE
-#wg show
+wg-quick up $TUNNEL_DEVICE
+wg show
 echo "now waiting in a loop"
 
 while [ -z "$DONE" ]; do
