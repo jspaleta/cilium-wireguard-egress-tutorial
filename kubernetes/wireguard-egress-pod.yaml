@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: wireguard
+spec:
+  hostNetwork: true
+  nodeSelector:
+    egress: wireguard 
+  containers:
+  - name: wireguard-node-endpoint
+    image: "wireguard-tunnel:0.1"
+    securityContext:
+      capabilities:
+        add:
+        - NET_ADMIN
+    env:
+    - name: TUNNEL_MODE
+      value: node
