@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
   - name: test
-    image: test-pod:0.1
+    image: test:0.1
     imagePullPolicy: IfNotPresent
     command:
       - "sleep"
@@ -27,7 +27,7 @@ metadata:
 spec:
   containers:
   - name: test
-    image: test-pod:0.1
+    image: test:0.1
     imagePullPolicy: IfNotPresent
     command:
       - "sleep"
