@@ -16,8 +16,8 @@ nodes:
     wireguard: enabled
     # port forward 80 on the host to 80 on this node
   extraPortMappings:
-  - containerPort: 51001
-    hostPort: 51001
+  - containerPort: 31001
+    hostPort: 31001
     # optional: set the bind address on the host
     # 0.0.0.0 is the current default
     listenAddress: "192.168.1.28"

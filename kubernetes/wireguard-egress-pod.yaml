@@ -2,8 +2,9 @@ apiVersion: v1
 kind: Pod
 metadata:
  name: wireguard
+ labels:
+   egress: wireguard  
 spec:
-  hostNetwork: true
   nodeSelector:
     egress: wireguard 
   containers:
@@ -16,3 +17,26 @@ spec:
     env:
     - name: TUNNEL_MODE
       value: node
+    ports:
+    - containerPort: 31001    
+      protocol: UDP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    egress: wireguard
+  name: wireguard-service
+spec:
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 31001
+    targetPort: 31001
+    port: 31001
+    protocol: UDP
+  selector:
+    egress: wireguard
+  type: NodePort
+
